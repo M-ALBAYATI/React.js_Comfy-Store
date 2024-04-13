@@ -22,7 +22,7 @@ const Login = () => {
           defaultValue="secret"
         />
         <div className="mt-4">
-          <SubmitBtn text="login"/>
+          <SubmitBtn text="login" />
         </div>
         <button type="button" className="btn btn-secondary btn-block uppercase">
           guest user
