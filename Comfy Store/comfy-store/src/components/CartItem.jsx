@@ -53,7 +53,7 @@ const CartItem = ({ cartItem }) => {
           <select
             name="amount"
             id="amount"
-            className="mt-2 select select-base select-bordered select-xs"
+            className="mt-2 select select-base select-bordered select-xs font-semibold"
             value={amount}
             onChange={handleAmount}
           >

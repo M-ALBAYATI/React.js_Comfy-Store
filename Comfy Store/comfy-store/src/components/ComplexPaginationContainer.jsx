@@ -18,7 +18,7 @@ const ComplexPaginationContainer = () => {
       <button
         key={pageNumber}
         onClick={() => handlePageChange(pageNumber)}
-        className={`btn btn-xs sm:btn-md border-none join-item  ${
+        className={`btn btn-xs sm:btn-md border-none join-item upp  ${
           activeClass ? 'bg-base-300 text-primary border-base-300' : ''
         }`}
       >
@@ -65,9 +65,9 @@ const ComplexPaginationContainer = () => {
   if (pageCount < 2) return null
   return (
     <div className="mt-16 flex justify-end">
-      <div className="join">
+      <div className="join border-y border-primary bg-base-c">
         <button
-          className="btn btn-xs sm:btn-md join-item"
+          className="btn btn-xs sm:btn-md join-item uppercase"
           onClick={() => {
             let prevPage = page - 1
             if (prevPage < 1) prevPage = pageCount
@@ -78,7 +78,7 @@ const ComplexPaginationContainer = () => {
         </button>
         {renderPageButtons()}
         <button
-          className="btn btn-xs sm:btn-md join-item"
+          className="btn btn-xs sm:btn-md join-item uppercase"
           onClick={() => {
             let nextPage = page + 1
             if (nextPage > pageCount) nextPage = 1

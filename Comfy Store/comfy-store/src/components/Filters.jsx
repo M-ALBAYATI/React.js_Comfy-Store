@@ -8,11 +8,11 @@ const Filters = () => {
   const { meta, params } = useLoaderData()
   const { search, company, category, shipping, order, price } = params
   return (
-    <Form className="bg-base-200 rounded-md px-8 py-4 grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center">
+    <Form className="bg-base-300 rounded-md px-8 py-4 grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center">
       {/* SEARCH  */}
       <FormInput
         type="search"
-        label="label product"
+        label="search product"
         name="search"
         size="input-sm"
         defaultValue={search}
@@ -56,11 +56,11 @@ const Filters = () => {
         defaultValue={shipping}
       />
       {/* BUTTONS */}
-      <button type="submit" className="btn btn-primary btn-sm">
+      <button type="submit" className="btn btn-primary btn-sm uppercase">
         search
       </button>
-      <Link to="/products" className="btn btn-accent btn-sm">
-        rest
+      <Link to="/products" className="btn btn-accent btn-sm uppercase">
+        reset
       </Link>
     </Form>
   )

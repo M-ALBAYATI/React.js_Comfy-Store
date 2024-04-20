@@ -5,11 +5,22 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addItem } from '../features/cart/cartSlice'
 
-export const loader = async ({ params }) => {
-  const response = await customFetch(`/products/${params.id}`)
-
-  return { product: response.data.data }
+const singleProductQuery = (id) => {
+  return {
+    queryKey: ['singleProduct', id],
+    queryFn: () => customFetch(`/products/${id}`),
+  }
 }
+
+export const loader =
+  (queryClient) =>
+  async ({ params }) => {
+    const response = await queryClient.ensureQueryData(
+      singleProductQuery(params.id)
+    )
+
+    return { product: response.data.data }
+  }
 
 const SingleProduct = () => {
   const { product } = useLoaderData()
@@ -92,12 +103,12 @@ const SingleProduct = () => {
           {/* AMOUNT */}
           <div className="form-control w-full max-w-xs">
             <label className="label" htmlFor="amount">
-              <h4 className="text-md font-medium tracking-wider capitalize">
+              <h4 className="text-md font-medium -tracking-wider capitalize">
                 amount
               </h4>
             </label>
             <select
-              className="select select-secondary select-bordered select-md"
+              className="select select-secondary select-bordered select-md font-semibold"
               id="amount"
               value={amount}
               onChange={handleAmount}
@@ -107,7 +118,10 @@ const SingleProduct = () => {
           </div>
           {/* CART BTN */}
           <div className="mt-10">
-            <button className="btn btn-secondary btn-md" onClick={addToCart}>
+            <button
+              className="btn btn-secondary btn-md uppercase"
+              onClick={addToCart}
+            >
               Add to bag
             </button>
           </div>

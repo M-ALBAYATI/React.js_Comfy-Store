@@ -3,12 +3,12 @@ import { Header, Loading, Navbar } from '../components'
 
 const HomeLayout = () => {
   const navigation = useNavigation()
-  const isPgaeLoading = navigation.state == 'loading'
+  const isPageLoading = navigation.state == 'loading'
   return (
     <>
       <Header />
       <Navbar />
-      {isPgaeLoading ? (
+      {isPageLoading ? (
         <Loading />
       ) : (
         <section className="align-element py-20">

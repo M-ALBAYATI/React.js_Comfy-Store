@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import {
   About,
   Cart,
@@ -28,6 +29,14 @@ import { action as loginAction } from './pages/Login'
 import { action as checkAction } from './components/CheckoutForm'
 import { store } from './store'
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+})
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -38,19 +47,19 @@ const router = createBrowserRouter([
         index: true,
         element: <Landing />,
         errorElement: <ErrorElement />,
-        loader: loadingLoader,
+        loader: loadingLoader(queryClient),
       },
       {
         path: 'products',
         element: <Products />,
         errorElement: <ErrorElement />,
-        loader: ProductsLoader,
+        loader: ProductsLoader(queryClient),
       },
       {
         path: 'products/:id',
         element: <SingleProduct />,
         errorElement: <ErrorElement />,
-        loader: SingleProductLoader,
+        loader: SingleProductLoader(queryClient),
       },
       {
         path: 'cart',
@@ -64,12 +73,12 @@ const router = createBrowserRouter([
         path: 'checkout',
         element: <Checkout />,
         loader: checkoutLoader(store),
-        action: checkAction(store),
+        action: checkAction(store, queryClient),
       },
       {
         path: 'orders',
         element: <Orders />,
-        loader: ordersLoader(store),
+        loader: ordersLoader(store, queryClient),
       },
     ],
   },
@@ -87,6 +96,11 @@ const router = createBrowserRouter([
   },
 ])
 const App = () => {
-  return <RouterProvider router={router} />
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  )
 }
 export default App

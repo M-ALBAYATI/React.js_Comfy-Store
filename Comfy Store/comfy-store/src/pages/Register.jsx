@@ -27,30 +27,15 @@ const Register = () => {
         className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4"
       >
         <h4 className="text-center text-3xl font-bold">Register</h4>
-        <FormInput
-          type="username"
-          label="username"
-          name="username"
-          defaultValue="müba asas"
-        />
-        <FormInput
-          type="email"
-          label="email"
-          name="email"
-          defaultValue="masas@gamil.com"
-        />
-        <FormInput
-          type="password"
-          label="password"
-          name="password"
-          defaultValue="secret"
-        />
+        <FormInput type="username" label="username" name="username" />
+        <FormInput type="email" label="email" name="email" />
+        <FormInput type="password" label="password" name="password" />
 
         <div className="mt-4">
           <SubmitBtn text="register" />
         </div>
         <p className="text-center">
-          Already a member?{' '}
+          Already a member?
           <Link
             to="/login"
             className="ml-2 link link-hover link-primary capitalize "

@@ -6,7 +6,7 @@ const themes = {
   dracula: 'dracula',
 }
 
-const getUserFromLocalStorage=()=>{
+const getUserFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem('user')) || null
 }
 
